@@ -11,27 +11,27 @@
     <thead>
     <tr>
 	    <th>
-		    Blog
+		    Titolo
 	    </th>
 	    <th>
-		    Title
+		    Domanda
 	    </th>
 	    <th>
-		    Content
+		    Tipo
 	    </th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="post in Posts | filter: query" ng-click="detail(post.Id)">
+    <tr ng-repeat="question in Questions | filter: query" ng-click="detail(question.Id)">
 	    <td>
-		    {{post.Blog.Name}}
+		    {{question.Survey.Title}}
 	    </td>
+			<td>
+				{{question.QuestionText}}
+			</td>
 	    <td>
-            {{post.Title}}
-        </td>
-        <td>
-            {{post.Content}}
-        </td>
+        {{question.Type}}
+      </td>
     </tr>
     </tbody>
 </table>

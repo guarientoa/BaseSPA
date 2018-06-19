@@ -24,7 +24,7 @@ namespace BaseSPA.Web.Controllers.OData
 		[EnableQuery]
         public IQueryable<Post> GetPosts()
         {
-            return _db.Posts;
+            return _db.Posts;//.Include(p => p.Blog);
         }
 
         // GET: odata/Posts(5)

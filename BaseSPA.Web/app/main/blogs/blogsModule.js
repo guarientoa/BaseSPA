@@ -6,14 +6,19 @@
           .state('home.blogs',
           {
             url: '/blogs',
-            templateUrl: 'app/main/blogs/blogs.html',
-            controller: 'blogsCtrl'
+						//templateUrl: 'app/main/blogs/blogs.html',
+            views: {
+							'content': { templateUrl: 'app/main/blogs/blogs.html', controller: 'blogsCtrl' }/*,
+	            'main': { templateUrl: 'app/main/main.html', controller: 'mainCtrl' }*/
+            }
+            //controller: 'blogsCtrl'
           })
           .state('home.blog',
           {
-            url: '/blog/:id',
-            templateUrl: 'app/main/blogs/blog.html',
-            controller: 'blogsDetailCtrl'
+						url: '/blog/:id',
+						views: {
+							'content': { templateUrl: 'app/main/blogs/blog.html', controller: 'blogsDetailCtrl' }
+						}
           });
       })
     .factory('blogsService', function ($http) {
@@ -89,7 +94,7 @@
         $state.go("home.blogs");
       };
 
-      if ($stateParams.id == '') {
+      if ($stateParams.id === '') {
         $scope.Blog = { Name: '', Url: '' }  
       } else {
         blogsService.detail($stateParams.id).then(function (result) {

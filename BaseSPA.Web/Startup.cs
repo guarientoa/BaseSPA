@@ -32,8 +32,8 @@ namespace BaseSPA.Web
 			};
 
 			var builder = new ODataConventionModelBuilder();
-			builder.EntitySet<Blog>("Blogs");
-			builder.EntitySet<Post>("Posts");
+			builder.EntitySet<Survey>("Surveys");
+			builder.EntitySet<Question>("Questions");
 			config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 
 			config.MapHttpAttributeRoutes();

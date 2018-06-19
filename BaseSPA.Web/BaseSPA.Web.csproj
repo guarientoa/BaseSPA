@@ -195,7 +195,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Api\BlogsController.cs" />
+    <Compile Include="Controllers\OData\QuestionsController.cs" />
+    <Compile Include="Controllers\OData\SurveysController.cs" />
     <Compile Include="Controllers\OData\BlogsController.cs" />
     <Compile Include="Controllers\OData\PostsController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -204,10 +205,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\main\questions\question.html" />
+    <Content Include="app\main\questions\questions.html" />
+    <Content Include="app\main\questions\questionModule.js" />
+    <Content Include="app\main\survey\survey.html" />
+    <Content Include="app\main\survey\surveys.html" />
+    <Content Include="app\main\survey\surveyModule.js" />
     <Content Include="app\main\blogs\blogs.html" />
     <Content Include="app\main\blogs\blogsModule.js" />
-    <Content Include="app\main\header.html" />
+    <Content Include="app\header\header.html" />
     <Content Include="app\main\main.html" />
+    <Content Include="app\main\mainModule - Copy.js" />
     <Content Include="app\main\mainModule.js" />
     <Content Include="app\main\posts\post.html" />
     <Content Include="app\main\posts\posts.html" />

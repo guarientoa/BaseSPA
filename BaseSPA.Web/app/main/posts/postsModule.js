@@ -1,26 +1,28 @@
 ﻿(function (window, angular) {
   'use-strict';
   angular.module('postsModule', ['ui.router', 'blogsModule', 'uiModule'])
-    .config([
-      '$stateProvider', function ($stateProvider) {
-        $stateProvider.state('home.posts',
+    .config(['$stateProvider',
+		  function ($stateProvider) {
+				$stateProvider
+					.state('home.posts',
           {
-            url: '/posts',
-            templateUrl: 'app/main/posts/posts.html',
-            controller: 'postsCtrl'
+						url: '/posts',
+						views: {
+							'content': { templateUrl: 'app/main/posts/posts.html', controller: 'postsCtrl' }
+						}
           })
           .state('home.post',
             {
-              url: '/post/:id',
-              templateUrl: 'app/main/posts/post.html',
-              controller: 'postsDetailCtrl'
+							url: '/post/:id',
+							views: {
+								'content': { templateUrl: 'app/main/posts/post.html', controller: 'postsDetailCtrl' }
+							}
             });
-      }
-    ])
+			}])
     .factory('postsService', function ($http) {
       return {
         list: function () {
-          return $http.get("/odata/Posts");
+					return $http.get("/odata/Posts?$expand=Blog");
         },
         detail: function (id) {
           return $http.get("/odata/Posts(guid'" + id + "')");
@@ -93,7 +95,7 @@
         $scope.Blogs = result.data.value;
       });
 
-      if ($stateParams.id == '') {
+      if ($stateParams.id === '') {
         $scope.Post = { Title: '', Content: '' }
       } else {
         postsService.detail($stateParams.id).then(function (result) {

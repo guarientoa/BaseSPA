@@ -1,19 +1,18 @@
 ﻿(function(window, angular) {
   'use-strict';
-  angular.module('mainModule', ['ui.router', 'blogsModule', 'postsModule'])
+	angular.module('mainModule', ['ui.router', 'surveyModule', 'questionModule'])//, 'answerModule'])
     .config(function ($stateProvider) {
-        var mainState = {
-          name: 'home',
-          url: '/home',
-          views: {
-            'header': { templateUrl: 'app/main/header.html' },
-            'main': { templateUrl: 'app/main/main.html', controller: 'mainCtrl' }
-          }
-        }
-
-        $stateProvider.state(mainState);
-      })
+			$stateProvider
+				.state('home',
+			  {
+				  url: '/home/surveys',
+				  views: {
+					  'header': { templateUrl: 'app/header/header.html' },
+					  'main': { templateUrl: 'app/main/main.html', controller: 'mainCtrl' }
+				  }
+			  });
+	  })
     .controller('mainCtrl', function ($scope, $state) {
-        $scope.$state = $state;
+			$scope.$state = $state;
       });
 })(window, window.angular)

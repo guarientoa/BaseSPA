@@ -1,0 +1,18 @@
+﻿<form name="form">
+    <div class="form-group">
+        <label for="name">Survey</label>
+        <ui-select id="survey" name="survey" options="Surveys" selected-option="Survey.SurveyId" is-required="true"></ui-select>
+    </div>
+    <div class="form-group">
+        <label for="name">Domanda</label>
+        <input type="text" class="form-control" id="QuestionText" name="QuestionText" placeholder="QuestionText" ng-model="Question.QuestionText" required>
+    </div>
+    <div class="form-group">
+        <label for="url">Tipo</label>
+        <input type="text" class="form-control" id="Type" name="Type" placeholder="Type" ng-model="Question.Type" required>
+    </div>
+
+    <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Save</button>
+    <button type="button" class="btn btn-danger" ng-disabled="!form.$valid || Question.Id == undefined" ng-click="delete()">Delete</button>
+    <button type="button" class="btn btn-default" ng-click="close()">Close</button>
+</form>
