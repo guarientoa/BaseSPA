@@ -5,7 +5,7 @@
 			$stateProvider
 				.state('home',
 			  {
-				  url: '/home/surveys',
+				  url: '/home',
 				  views: {
 					  'header': { templateUrl: 'app/header/header.html' },
 					  'main': { templateUrl: 'app/main/main.html', controller: 'mainCtrl' }

@@ -1,18 +1,22 @@
 ﻿<form name="form" role="form">
-	<div class="form-group">
-		<label for="name">Titolo</label>
-		<input type="text" class="form-control" id="name" name="name" placeholder="Name" ng-model="Survey.Title" required>
-	</div>
-	<div class="form-group">
-		<label for="name">Sottotitolo</label>
-		<input type="text" class="form-control" id="name" name="name" placeholder="Name" ng-model="Survey.Subtitle" required>
-	</div>
-    <div class="form-group">
-        <label for="url">Descrizione</label>
-        <input type="text" class="form-control" id="url" name="url" placeholder="Url" ng-model="Survey.Description" required>
-    </div>
-	
-    <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Save</button>
-	<button type="button" class="btn btn-danger" ng-disabled="!form.$valid || Survey.Id == undefined" ng-click="delete()">Delete</button>
-	<button type="button" class="btn btn-default" ng-click="close()">Close</button>
+  <div class="form-group">
+    <label for="title">Titolo</label>
+    <input type="text" class="form-control" id="title" name="title" placeholder="Titolo" ng-model="Survey.Title" required>
+  </div>
+  <div class="form-group">
+    <label for="subtitle">Sottotitolo</label>
+    <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Sottotitolo" ng-model="Survey.Subtitle" required>
+  </div>
+  <div class="form-group">
+    <label for="description">Descrizione</label>
+    <input type="text" class="form-control" id="description" name="description" placeholder="Descrizione" ng-model="Survey.Description" required>
+  </div>
+  <div class="form-group">
+    <label for="notes">Note</label>
+    <input type="text" class="form-control" id="notes" name="notes" placeholder="Note" ng-model="Survey.Notes" >
+  </div>
+
+  <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!form.$valid">Save</button>
+  <button type="button" class="btn btn-danger" ng-disabled="!form.$valid || Survey.Id == undefined" ng-click="delete()">Delete</button>
+  <button type="button" class="btn btn-default" ng-click="close()">Close</button>
 </form>

@@ -2,32 +2,33 @@
   'use-strict';
   angular.module('surveyModule', ['ui.router'])
     .config(function ($stateProvider) {
-        $stateProvider
-          .state('home.survey',
+      $stateProvider
+        .state('home.survey',
           {
-            url: '/survey',
-						//templateUrl: 'app/main/blogs/blogs.html',
+            url: '/surveys',
+            //templateUrl: 'app/main/blogs/blogs.html',
             views: {
-							'content': { templateUrl: 'app/main/survey/surveys.html', controller: 'surveysCtrl' }/*,
+              'content': { templateUrl: 'app/main/survey/surveys.html', controller: 'surveysCtrl' }/*,
 	            'main': { templateUrl: 'app/main/main.html', controller: 'mainCtrl' }*/
             }
             //controller: 'blogsCtrl'
           })
-          .state('home.survey.detail',
+        .state('home.surveydetail',
           {
-						url: '/survey/:id',
-						views: {
-							'content': { templateUrl: 'app/main/survey/survey.html', controller: 'surveysDetailCtrl' }
-						}
+            url: '/surveydetail/:id',
+            views: {
+              'content': { templateUrl: 'app/main/survey/survey.html', controller: 'surveysDetailCtrl' }
+
+            }
           });
-      })
+    })
     .factory('surveysService', function ($http) {
       return {
         list: function () {
           return $http.get("/odata/Surveys");
         },
         detail: function (id) {
-          return $http.get("/odata/Surveys(Id'" + id + "')");
+          return $http.get("/odata/Surveys(" + id + ")");
         },
         create: function (survey) {
           var req = {
@@ -41,65 +42,71 @@
 
           return $http(req);
         },
-				save: function (survey) {
+        save: function (survey) {
           var req = {
             method: 'PATCH',
-						url: '/odata/Surveys(Id\'' + survey.Id + '\')',
+            url: '/odata/Surveys(' + survey.Id + ')',
             headers: {
               'Content-Type': 'application/json'
             },
-						data: survey
+            data: survey
           };
 
           return $http(req);
         },
         delete: function (id) {
-          return $http.delete("/odata/Surveys(Id'" + id + "')");
+          return $http.delete("/odata/Surveys(" + id + ")");
         }
       }
     })
-		.controller('surveysCtrl', function ($scope, $state, surveysService) {
+    .controller('surveysCtrl', function ($scope, $state, surveysService) {
 
-      $scope.new = function() {
-				$state.go("home.survey", { id: null });
+      $scope.new = function () {
+        $state.go("home.surveydetail", { id: null });
       };
 
-      $scope.detail = function(id) {
-				$state.go("home.survey", { id: id });
+      $scope.detail = function (id) {
+        $state.go("home.surveydetail", { id: id });
       };
 
-		  surveysService.list().then(function (result) {
+      surveysService.list().then(function (result) {
         $scope.Surveys = result.data.value;
       });
     })
-		.controller('surveysDetailCtrl', function ($scope, $state, $stateParams, surveysService) {
+    .controller('surveysDetailCtrl', function ($scope, $state, $stateParams, surveysService) {
 
       $scope.save = function () {
-				if ($scope.Survey.Id === undefined) {
-					surveysService.create($scope.Survey).then(function (result) {
-						$scope.Survey = result.data;
+        if ($scope.Survey.Id === undefined) {
+          surveysService.create($scope.Survey).then(function (result) {
+            $scope.Survey = result.data;
           });
         } else {
-					surveysService.save($scope.Survey).then(function () {});
+          surveysService.save($scope.Survey).then(function (result) {
+            $scope.Survey = result.data;
+          });
+
+
         };
       };
 
-      $scope.delete = function() {
-				surveysService.delete($scope.Survey.Id).then(function() {
-					$state.go("home.survey");
+      $scope.delete = function () {
+        surveysService.delete($scope.Survey.Id).then(function () {
+          $state.go("home.survey");
         });
       }
 
       $scope.close = function () {
-				$state.go("home.survey");
+        $state.go("home.survey");
       };
 
       if ($stateParams.id === '') {
-				$scope.Survey = { Title: '', Subtitle: '', Description: '' }  
+        $scope.Survey = { Title: '', Subtitle: '', Description: '' }
       } else {
-	      surveysService.detail($stateParams.id).then(function (result) {
-					$scope.Survey = result.data;
-        });  
+        surveysService.detail($stateParams.id).then(function (result) {
+          $scope.Survey = result.data;
+        });
       }
     });
+		
+    
 })(window, window.angular);

@@ -1,12 +1,12 @@
 ﻿<div class="col-lg-2">
     <ul class="nav nav-pills nav-stacked">
-        <li role="presentation" ng-class="{active: $state.includes('home.survey') || $state.includes('home.survey.detail')}">
+        <li role="presentation" ng-class="{active: $state.includes('home.survey') || $state.includes('home.surveydetail')}">
             <a ui-sref="home.survey">
                 <i class="fa fa-users"></i>
                 Sondaggi
             </a>
         </li>
-        <li role="presentation" ng-class="{active: $state.includes('home.question') || $state.includes('home.question.detail')}">
+        <li role="presentation" ng-class="{active: $state.includes('home.question') || $state.includes('home.questiondetail')}">
             <a ui-sref="home.question">
                 <i class="fa fa-life-ring"></i>
                 Domande
@@ -15,5 +15,5 @@
     </ul>
 </div>
 <div class="col-lg-10">
-    <div ui-view="content"></div>
+  <div ui-view="content"></div>
 </div>
