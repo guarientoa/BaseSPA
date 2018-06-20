@@ -11,7 +11,7 @@
 							'content': { templateUrl: 'app/main/questions/questions.html', controller: 'questionsCtrl' }
 						}
           })
-          .state('home.question.detail',
+          .state('home.questiondetail',
             {
 							url: '/question/:id',
 							views: {
@@ -58,11 +58,11 @@
     })
     .controller('questionsCtrl', function ($scope, $state, questionsService) {
         $scope.new = function () {
-          $state.go("home.question", { id: null });
+          $state.go("home.questiondetail", { id: null });
         };
 
         $scope.detail = function (id) {
-          $state.go("home.question", { id: id });
+          $state.go("home.questiondetail", { id: id });
         };
 
         questionsService.list().then(function (result) {
