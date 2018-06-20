@@ -15,7 +15,7 @@ namespace BaseSPA.Web.Controllers.OData
 		private readonly SpaContext _db;
 
 		public QuestionsController(ContextFactory contextFactory) { _db = contextFactory.GetContext<SpaContext>(); }
-
+		 
 		[EnableQuery]
 		public IQueryable<Question> GetQuestions() => _db.Questions;
 
