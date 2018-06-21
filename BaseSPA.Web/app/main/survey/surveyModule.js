@@ -82,7 +82,8 @@
           });
         } else {
           surveysService.save($scope.Survey).then(function (result) {
-            $scope.Survey = result.data;
+						$scope.Survey = result.data;
+	          $state.go("home.survey");
           });
 
 

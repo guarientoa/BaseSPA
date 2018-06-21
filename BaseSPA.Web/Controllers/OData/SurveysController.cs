@@ -20,7 +20,7 @@ namespace BaseSPA.Web.Controllers.OData
 		public SingleResult<Survey> GetSurvey([FromODataUri] int key) => SingleResult.Create(_db.Surveys.Where(b => b.Id == key));
 
 		[AcceptVerbs("PATCH", "MERGE")]
-		public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<Survey> patch)
+		public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Survey> patch)
 		{
 			Validate(patch.GetEntity());
 
@@ -49,7 +49,7 @@ namespace BaseSPA.Web.Controllers.OData
 			return Created(survey);
 		}
 
-		public async Task<IHttpActionResult> Delete([FromODataUri] Guid key)
+		public async Task<IHttpActionResult> Delete([FromODataUri] int key)
 		{
 			var entity = await _db.Surveys.FindAsync(key);
 			if (entity == null)

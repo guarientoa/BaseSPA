@@ -13,7 +13,7 @@
           })
           .state('home.questiondetail',
             {
-							url: '/question/:id',
+							url: '/questions/:id',
 							views: {
 								'content': { templateUrl: 'app/main/questions/question.html', controller: 'questionsDetailCtrl' }
 							}
@@ -69,7 +69,7 @@
           $scope.Questions = result.data.value;
         });
       })
-    .controller('questionsDetailCtrl', function ($scope, $state, $stateParams, questionsService, surveysService) {
+		.controller('questionsDetailCtrl', function ($scope, $state, $stateParams, questionsService, surveysService) {
 
       $scope.save = function () {
         if ($scope.Question.Id === undefined) {
@@ -83,20 +83,20 @@
 
       $scope.delete = function () {
 				questionsService.delete($scope.Question.Id).then(function () {
-          $state.go("home.questions");
+          $state.go("home.question");
         });
       }
 
       $scope.close = function () {
-        $state.go("home.questions");
+        $state.go("home.question");
       };
 
-		  questionsService.list().then(function (result) {
-        $scope.Surveys = result.data.value;
+		  surveysService.list().then(function (result) {
+				$scope.Surveys = result.data.value;
       });
 
       if ($stateParams.id === '') {
-				$scope.Question = { Title: '', Content: '' }
+				$scope.Question = { QuestionText: '', Type: '' }
       } else {
         questionsService.detail($stateParams.id).then(function (result) {
 					$scope.Question = result.data;

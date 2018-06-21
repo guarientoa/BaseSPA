@@ -23,7 +23,7 @@ namespace BaseSPA.Web.Controllers.OData
 		public SingleResult<Question> GetQuestion([FromODataUri] int key) => SingleResult.Create(_db.Questions.Where(question => question.Id == key));
 
 		[AcceptVerbs("PATCH", "MERGE")]
-		public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<Question> patch)
+		public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Question> patch)
 		{
 			Validate(patch.GetEntity());
 

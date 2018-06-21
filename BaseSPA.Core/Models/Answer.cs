@@ -15,7 +15,7 @@ namespace BaseSPA.Core.Models
         public string AnswerText { get; set; }
         public DateTime? dtAgg { get; set; }
 
-	    [ForeignKey("Id")]
+	    [ForeignKey("QuestionId")]
 			public virtual Question Question { get; set; }
     }
 }
